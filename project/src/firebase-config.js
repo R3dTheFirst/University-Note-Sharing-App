@@ -9,13 +9,13 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyCd5gThiGaEJYtzlenmwXWNX_zasEVpaag",
+    apiKey: process.env.REACT_APP_KEY,
     authDomain: "university-note-sharing.firebaseapp.com",
     projectId: "university-note-sharing",
     storageBucket: "university-note-sharing.firebasestorage.app",
-    messagingSenderId: "234086158642",
-    appId: "1:234086158642:web:41c852725095f1bde0872b",
-    measurementId: "G-3STJ77E4DK",
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    measurementId: process.env.REACT_APP_MEASURMENT_ID,
 };
 
 // Initialize Firebase
