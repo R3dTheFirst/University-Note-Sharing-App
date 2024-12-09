@@ -43,13 +43,12 @@ A simple, user-friendly platform for sharing and accessing notes. Users can view
 ## 🛠️ Tech Stack
 
 - **Frontend**: React.js
-- **Backend**: [Your chosen backend]  
-  Handles note storage and user authentication.
-- **Database**: [Your chosen database]  
+- **Backend**: Firebase
+  Handles note storage and user authentication.  
   Stores metadata about notes and user information.
-- **File Storage**: [Your chosen storage solution]  
+- **File Storage**: Firebase
   Stores uploaded `.pdf` files.
-- **Authentication**: [Your chosen authentication service]  
+- **Authentication**: Firebase
   Manages user sign-up, login, and authentication flows.
 
 ---
