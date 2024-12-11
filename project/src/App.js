@@ -1,6 +1,29 @@
+import { useState, useEffect } from "react";
 import "./App.css";
+import { supabase } from "./supabase-config";
+import { Link } from "react-router-dom";
+import NoteCard from "./components/NoteCard";
 
 function App() {
+    const [notes, setNotes] = useState([]);
+
+    useEffect(() => {
+        // Fetch data when component mounts
+        const fetchNotes = async () => {
+            const { data, error } = await supabase
+                .from("notes") // Your table name
+                .select("*"); // Select all columns
+
+            if (error) {
+                console.error("Error fetching data:", error);
+            } else {
+                setNotes(data);
+            }
+        };
+
+        fetchNotes();
+    }, []);
+
     return (
         <div className=" h-[400px]">
             {/* Hero */}
@@ -15,8 +38,22 @@ function App() {
             <div className="mx-auto mt-3 w-[90%] h-[1px] bg-primary rounded-full"></div>
 
             {/* All Notes section */}
-            <div>
-                
+            <div className="flex flex-wrap gap-2 justify-center mt-10">
+                {notes.map((note) => (
+                    <div
+                        key={note.noteid}
+                        className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex justify-center"
+                    >
+                        <NoteCard
+                            moduleName={note.moduleName}
+                            year={note.year}
+                            author={note.author}
+                            thanks={note.thanks}
+                            id={note.noteid}
+                            to={"/notes/" + note.noteid}
+                        />
+                    </div>
+                ))}
             </div>
         </div>
     );

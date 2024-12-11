@@ -11,7 +11,7 @@ export default function NavBar() {
             {/* mid Items */}
             <div className="flex gap-1 md:gap-4">
                 <Link to="#AllNotes">Notes</Link>
-                <Link to="#CreateNote">Create</Link>
+                <Link to="/create">Create</Link>
             </div>
 
             {/* Authentication Links */}
