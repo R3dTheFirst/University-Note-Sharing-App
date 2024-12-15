@@ -3,26 +3,35 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../supabase-config";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [logInErrorMessage, setLogInErrorMessage] = useState(null);
 
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Email:", email);
-        console.log("Password:", password);
+        const { user, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+        });
 
-        try {
-            const user = await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-            navigate("/");
-        } catch (error) {
-            console.error(error.message);
+        if (error) {
+            if (error.message.includes("Invalid")) {
+                setLogInErrorMessage(
+                    "The username or password does not match our records."
+                );
+            } else if (error.message.includes("fetch")) {
+                setLogInErrorMessage(
+                    "There was a problem connecting to the server"
+                );
+            } else {
+                setLogInErrorMessage("There was a problem");
+            }
+        } else {
+            navigate("/account");
         }
     };
 
@@ -60,7 +69,15 @@ export default function Login() {
                         <div className="mb-6">
                             <h3 className="text-2xl font-bold">Log me in</h3>
                         </div>
-
+                        <div>
+                            {logInErrorMessage ? (
+                                <p className="text-red-500 font-bold mb-4">
+                                    {logInErrorMessage}
+                                </p>
+                            ) : (
+                                <p></p>
+                            )}
+                        </div>
                         <div className="space-y-6">
                             <div>
                                 <label className="text-sm mb-2 block">

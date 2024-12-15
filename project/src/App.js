@@ -5,25 +5,6 @@ import { Link } from "react-router-dom";
 import NoteCard from "./components/NoteCard";
 
 function App() {
-    const [notes, setNotes] = useState([]);
-
-    useEffect(() => {
-        // Fetch data when component mounts
-        const fetchNotes = async () => {
-            const { data, error } = await supabase
-                .from("notes") // Your table name
-                .select("*"); // Select all columns
-
-            if (error) {
-                console.error("Error fetching data:", error);
-            } else {
-                setNotes(data);
-            }
-        };
-
-        fetchNotes();
-    }, []);
-
     return (
         <div className=" h-[400px]">
             {/* Hero */}
@@ -39,21 +20,42 @@ function App() {
 
             {/* All Notes section */}
             <div className="flex flex-wrap gap-2 justify-center mt-10">
-                {notes.map((note) => (
-                    <div
-                        key={note.noteid}
-                        className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex justify-center"
-                    >
-                        <NoteCard
-                            moduleName={note.moduleName}
-                            year={note.year}
-                            author={note.author}
-                            thanks={note.thanks}
-                            id={note.noteid}
-                            to={"/notes/" + note.noteid}
-                        />
-                    </div>
-                ))}
+                <Link
+                    to="/physics"
+                    href="#"
+                    className="block max-w-sm p-6 border border-secondary rounded-lg shadow hover:bg-secondary bg-primary w-[80%] text-center"
+                >
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        Physics Notes
+                    </h5>
+                </Link>
+                <Link
+                    to="/compsci"
+                    href="#"
+                    className="block max-w-sm p-6 border border-secondary rounded-lg shadow hover:bg-secondary bg-primary w-[80%] text-center"
+                >
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        Computer Science
+                    </h5>
+                </Link>
+                <Link
+                    to="/maths"
+                    href="#"
+                    className="block max-w-sm p-6 border border-secondary rounded-lg shadow hover:bg-secondary bg-primary w-[80%] text-center"
+                >
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        Mathematics
+                    </h5>
+                </Link>
+                <Link
+                    to="other"
+                    href="#"
+                    className="block max-w-sm p-6 border border-secondary rounded-lg shadow hover:bg-secondary bg-primary w-[80%] text-center"
+                >
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        Other
+                    </h5>
+                </Link>
             </div>
         </div>
     );

@@ -9,6 +9,12 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Create from "./pages/Create";
 import NotePage from "./pages/NotePage";
+import Notes from "./pages/Notes";
+import Account from "./pages/Account";
+import Physics from "./pages/Physics";
+import Mathematics from "./pages/Mathematics";
+import CompSci from "./pages/Compsci";
+import Other from "./pages/Other";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,7 +25,13 @@ root.render(
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/create" element={<Create />} />
+            <Route path="/notes" element={<Notes />} />
             <Route path="/notes/:id" element={<NotePage />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/physics" element={<Physics />} />
+            <Route path="/maths" element={<Mathematics />} />
+            <Route path="/compsci" element={<CompSci />} />
+            <Route path="/other" element={<Other />} />
         </Routes>
     </BrowserRouter>
 );

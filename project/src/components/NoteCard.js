@@ -10,7 +10,7 @@ export default function NoteCard({ moduleName, year, author, thanks, id }) {
                 <p className="text-text">
                     {year} by: {author}
                 </p>
-                <p className="text-text">Thanks: {thanks}</p>
+                <p className="text-text">Thanks: {thanks.length}</p>
             </div>
         </Link>
     );

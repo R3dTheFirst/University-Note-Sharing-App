@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../supabase-config";
 
 export default function Register() {
     const [email, setEmail] = useState("");
@@ -12,18 +13,16 @@ export default function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Email:", email);
-        console.log("Password:", password);
+        const { user, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+        });
 
-        try {
-            const user = await createUserWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-            navigate("/");
-        } catch (error) {
-            console.error(error.message);
+        if (error) {
+            console.error("Error signing up:", error.message);
+            console.log(error.details); // Log error details to get more information
+        } else {
+            navigate("/account");
         }
     };
 
