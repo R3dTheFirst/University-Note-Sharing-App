@@ -23,24 +23,26 @@ function Notes() {
     }, []);
 
     return (
-        <div className=" h-[400px]">
-            {/* All Notes section */}
-            <div className="flex flex-wrap gap-2 justify-center mt-10">
-                {notes.map((note) => (
-                    <div
-                        key={note.id}
-                        className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex justify-center"
-                    >
-                        <NoteCard
-                            moduleName={note.module}
-                            year={note.year}
-                            author={note.author}
-                            thanks={note.thanks}
-                            id={note.id}
-                            to={"/notes/" + note.id}
-                        />
-                    </div>
-                ))}
+        <div className="flex flex-col min-h-screen">
+            <div className="flex-grow">
+                {/* All Notes section */}
+                <div className="flex flex-wrap justify-center gap-2 mt-10">
+                    {notes.map((note) => (
+                        <div
+                            key={note.id}
+                            className="flex justify-center w-full md:w-1/3"
+                        >
+                            <NoteCard
+                                moduleName={note.module}
+                                year={note.year}
+                                author={note.author}
+                                thanks={note.thanks}
+                                id={note.id}
+                                to={"/notes/" + note.id}
+                            />
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );

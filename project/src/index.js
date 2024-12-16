@@ -15,24 +15,26 @@ import Physics from "./pages/Physics";
 import Mathematics from "./pages/Mathematics";
 import CompSci from "./pages/Compsci";
 import Other from "./pages/Other";
+import Layout from "./components/Layout";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <BrowserRouter>
-        <NavBar />
-        <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/create" element={<Create />} />
-            <Route path="/notes" element={<Notes />} />
-            <Route path="/notes/:id" element={<NotePage />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/physics" element={<Physics />} />
-            <Route path="/maths" element={<Mathematics />} />
-            <Route path="/compsci" element={<CompSci />} />
-            <Route path="/other" element={<Other />} />
-        </Routes>
+        <Layout>
+            <Routes>
+                <Route path="/" element={<App />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/create" element={<Create />} />
+                <Route path="/notes" element={<Notes />} />
+                <Route path="/notes/:id" element={<NotePage />} />
+                <Route path="/account" element={<Account />} />
+                <Route path="/physics" element={<Physics />} />
+                <Route path="/maths" element={<Mathematics />} />
+                <Route path="/compsci" element={<CompSci />} />
+                <Route path="/other" element={<Other />} />
+            </Routes>
+        </Layout>
     </BrowserRouter>
 );
 

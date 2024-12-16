@@ -4,10 +4,10 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                background: "#000000",
-                text: "#eeedff",
-                primary: "#12363e",
-                secondary: "#194748",
+                background: "#020205",
+                text: "#F2EFFF",
+                primary: "#4A22FF",
+                secondary: "#190089",
             },
             fontFamily: {
                 spaceGrotesk: ["Space Grotesk", "sans-serif"],

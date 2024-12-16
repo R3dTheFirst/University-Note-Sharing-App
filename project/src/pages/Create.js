@@ -115,14 +115,16 @@ export default function Create() {
 
     if (!user) {
         return (
-            <div className="flex justify-center mt-10">
-                <div className="flex flex-col w-full max-w-lg p-6 rounded-lg shadow-lg">
-                    <h1 className="text-3xl text-center text-white font-semibold mb-6">
-                        You need to be logged in to create a note
-                    </h1>
-                    <p className="text-white text-center mb-4">
-                        Please log in to access this feature.
-                    </p>
+            <div className="flex flex-col min-h-screen">
+                <div className="flex justify-center flex-grow mt-10">
+                    <div className="flex flex-col w-full max-w-lg p-6 rounded-lg shadow-lg">
+                        <h1 className="mb-6 text-3xl font-semibold text-center text-white">
+                            You need to be logged in to create a note
+                        </h1>
+                        <p className="mb-4 text-center text-white">
+                            Please log in to access this feature.
+                        </p>
+                    </div>
                 </div>
             </div>
         );
@@ -131,15 +133,15 @@ export default function Create() {
     if (uploading) {
         return (
             <div className="flex items-center justify-center min-h-screen bg-background">
-                <div className="flex flex-col items-center justify-center p-6 max-w-lg w-full bg-background shadow-xl rounded-lg">
-                    <div className="text-white text-center text-xl font-semibold mb-4">
+                <div className="flex flex-col items-center justify-center w-full max-w-lg p-6 rounded-lg shadow-xl bg-background">
+                    <div className="mb-4 text-xl font-semibold text-center text-white">
                         Your note is being shared with the masses
                     </div>
-                    <div className="flex justify-center items-center mb-4">
-                        <RiRefreshLine className="animate-spin text-4xl text-primary" />
+                    <div className="flex items-center justify-center mb-4">
+                        <RiRefreshLine className="text-4xl animate-spin text-primary" />
                     </div>
                     <div>
-                        <p className="text-white text-center font-medium">
+                        <p className="font-medium text-center text-white">
                             Please wait...
                         </p>
                     </div>
@@ -149,116 +151,122 @@ export default function Create() {
     }
 
     return (
-        <div className="flex justify-center mt-10">
-            <div className="flex flex-col w-full max-w-lg p-6 rounded-lg shadow-lg">
-                <h1 className="text-3xl text-center text-white font-semibold mb-6">
-                    Create a New Note
-                </h1>
-                <div>
-                    {createErrorMessage ? (
-                        <p className="text-red-500 font-bold mb-4">
+        <div className="flex flex-col min-h-screen">
+            <div className="flex justify-center flex-grow mt-10">
+                <div className="flex flex-col w-full max-w-lg p-6 rounded-lg shadow-lg">
+                    <h1 className="mb-6 text-3xl font-semibold text-center text-white">
+                        Create a New Note
+                    </h1>
+                    {createErrorMessage && (
+                        <p className="mb-4 font-bold text-red-500">
                             {createErrorMessage}
                         </p>
-                    ) : (
-                        <p></p>
                     )}
+                    <form className="space-y-4">
+                        <div>
+                            <label
+                                className="block mb-2 text-white"
+                                htmlFor="moduleName"
+                            >
+                                Module Name
+                            </label>
+                            <input
+                                className="w-full p-3 text-white border border-gray-600 rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                                id="moduleName"
+                                type="text"
+                                value={moduleName}
+                                onChange={(e) => setModuleName(e.target.value)}
+                                placeholder="Enter module name"
+                            />
+                        </div>
+                        <div>
+                            <label
+                                className="block mb-2 text-white"
+                                htmlFor="year"
+                            >
+                                Year
+                            </label>
+                            <input
+                                className="w-full p-3 text-white border border-gray-600 rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                                id="year"
+                                type="text"
+                                value={year}
+                                onChange={(e) => setYear(e.target.value)}
+                                placeholder="Enter year"
+                            />
+                        </div>
+                        <div>
+                            <label
+                                className="block mb-2 text-white"
+                                htmlFor="noteType"
+                            >
+                                Note Type
+                            </label>
+                            <select
+                                id="noteType"
+                                className="w-full p-3 text-white border rounded-lg bg-background border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                                value={kind}
+                                onChange={(e) => setKind(e.target.value)}
+                            >
+                                <option value="" disabled>
+                                    Select a type
+                                </option>
+                                <option value="Assignment Note">
+                                    Assignment Tips
+                                </option>
+                                <option value="Finals Notes">
+                                    Finals Notes
+                                </option>
+                                <option value="Mock Tests">Mock Tests</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label
+                                className="block mb-2 text-white"
+                                htmlFor="noteCategory"
+                            >
+                                Note Category
+                            </label>
+                            <select
+                                id="noteCategory"
+                                className="w-full p-3 text-white border rounded-lg bg-background border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                            >
+                                <option value="" disabled>
+                                    Select a category
+                                </option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Computer Science">
+                                    Computer Science
+                                </option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label
+                                className="block mb-2 text-white"
+                                htmlFor="file"
+                            >
+                                Upload PDF
+                            </label>
+                            <input
+                                className="w-full p-3 text-white border border-gray-600 rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                                id="file"
+                                type="file"
+                                onChange={(e) => setFile(e.target.files[0])}
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            className="w-full p-3 font-semibold text-white rounded-lg bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-primary"
+                            onClick={handleSubmit}
+                        >
+                            Submit
+                        </button>
+                    </form>
                 </div>
-                <form className="space-y-4">
-                    <div>
-                        <label
-                            className="text-white block mb-2"
-                            htmlFor="moduleName"
-                        >
-                            Module Name
-                        </label>
-                        <input
-                            className="w-full p-3 bg-background text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                            id="moduleName"
-                            type="text"
-                            value={moduleName}
-                            onChange={(e) => setModuleName(e.target.value)}
-                            placeholder="Enter module name"
-                        />
-                    </div>
-                    <div>
-                        <label className="text-white block mb-2" htmlFor="year">
-                            Year
-                        </label>
-                        <input
-                            className="w-full p-3 bg-background text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                            id="year"
-                            type="text"
-                            value={year}
-                            onChange={(e) => setYear(e.target.value)}
-                            placeholder="Enter year"
-                        />
-                    </div>
-                    <div>
-                        <label
-                            className="text-white block mb-2"
-                            htmlFor="noteType"
-                        >
-                            Note Type
-                        </label>
-                        <select
-                            id="noteType"
-                            className="w-full p-3 bg-background text-white border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                            value={kind}
-                            onChange={(e) => setKind(e.target.value)}
-                        >
-                            <option value="" disabled>
-                                Select a type
-                            </option>
-                            <option value="Assignment Note">
-                                Assignment Tips
-                            </option>
-                            <option value="Finals Notes">Finals Notes</option>
-                            <option value="Mock Tests">Mock Tests</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label
-                            className="text-white block mb-2"
-                            htmlFor="noteType"
-                        >
-                            Note Category
-                        </label>
-                        <select
-                            id="noteType"
-                            className="w-full p-3 bg-background text-white border border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                        >
-                            <option value="" disabled>
-                                Select a type
-                            </option>
-                            <option value="Mathematics">Mathematics</option>
-                            <option value="Physics">Physics</option>
-                            <option value="Computer Science">
-                                Computer Science
-                            </option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="text-text block mb-2" htmlFor="file">
-                            Upload PDF
-                        </label>
-                        <input
-                            className="w-full p-3 bg-background text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                            id="file"
-                            type="file"
-                            onChange={(e) => setFile(e.target.files[0])}
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="w-full p-3 bg-primary text-white font-semibold rounded-lg hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-primary"
-                        onClick={handleSubmit}
-                    >
-                        Submit
-                    </button>
-                </form>
             </div>
         </div>
     );
